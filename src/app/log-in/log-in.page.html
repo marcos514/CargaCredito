@@ -1,0 +1,48 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="container" color='warning'>
+        <img class="icon" src="assets/icon/qr.png">
+        <div >
+            <h2 class='text'>Iniciar Sesión</h2>
+        </div>
+
+      </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item shape="round">
+        <ion-label position="floating">
+          <ion-text>
+            <h4>
+              Correo Electronico
+            </h4>
+          </ion-text>
+        </ion-label>
+        <ion-input clear-input type='text' [(ngModel)]='email'></ion-input>
+      </ion-item>
+
+      <ion-item shape="round">
+          <ion-label position="floating">
+            <ion-text>
+              <h4>
+                Contraseña
+              </h4>
+            </ion-text>
+          
+          </ion-label>
+          <ion-input clearInput type='password' [(ngModel)]='password'></ion-input>
+        </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-button (click)='OnSubmitLogIn()' shape="round" color='success' expand="block">
+            <ion-icon slot="start" name="checkmark"></ion-icon>
+            Aceptar
+          </ion-button>
+        </ion-label>
+
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
