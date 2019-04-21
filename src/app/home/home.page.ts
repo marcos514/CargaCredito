@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { ToastController } from '@ionic/angular';
 import { ZBar, ZBarOptions } from '@ionic-native/zbar/ngx';
 @Component({
   selector: 'app-home',
@@ -11,7 +11,8 @@ export class HomePage {
   scannedResult:any = 0;
  
   constructor(
-    private zbar: ZBar
+    private zbar: ZBar,
+    public toastController: ToastController
   ) {
  
     this.zbarOptions = {
@@ -33,24 +34,52 @@ export class HomePage {
       if(result=='2786f4877b9091dcad7f35751bfcf5d5ea712b2f'){
         if(!cien && !cientocincuenta && !cientosesenta){
           this.scannedResult+=100;
+          return
         }
+        this.presentToast2()
       }
       let ex:string = result;
       if(ex.includes('e4bcffaf9ce5b409f')){
         if(!cincuenta && !sesenta && !cientocincuenta && !cientosesenta){
           this.scannedResult+=50;
+          return
         }
-        this.scannedResult+=  0;
+        this.presentToast2()
       }
+
       if(result=='8c95def646b6127282ed50454b73240300dccabc'){
         if(!diez && !sesenta && ! cientosesenta){
           this.scannedResult+=10;
+          return
         }
+        this.presentToast2()
       }
+      this.presentToast()
    })
    .catch(error => {
+      this.presentToast()
       alert(error); // Error message
    });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Error codigo QR invalido',
+      duration: 2000,
+      color:"dark",
+      showCloseButton:true
+    });
+    toast.present();
+  }
+
+  async presentToast2() {
+    const toast = await this.toastController.create({
+      message: 'Error codigo QR ya escaneado',
+      duration: 2000,
+      color:"dark",
+      showCloseButton:true
+    });
+    toast.present();
   }
 
   Borrar(){

@@ -21,4 +21,8 @@ export class LogInPage implements OnInit {
       this.publicRouter.navigate(['/home']);
     }).catch(err => alert('Reingresar Datos'));
   }
+  Rellenar(usr, password){
+    this.email=usr+"@gmail.com";
+    this.password = password;
+  }
 }
